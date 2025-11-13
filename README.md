@@ -2,7 +2,7 @@
 
 > Este projeto é um protótipo de um sistema de FID (Fault Detection and Identification) para aeronaves.
 
-Em vez de usar um modelo de IA "monolítico", esta arquitetura usa um comitê de 13+ modelos especialistas (RandomForestClassifier) em uma cascata de 3 níveis. O objetivo é imitar o processo de diagnóstico de um engenheiro de manutenção: começar pelo sistema principal, ir para o subsistema e, finalmente, isolar o componente com falha.
+Em vez de usar um modelo de IA "monolítico", esta arquitetura usa um total de 14 modelos especialistas (RandomForestClassifier) em uma cascata de 3 níveis. O objetivo é imitar o processo de diagnóstico de um engenheiro de manutenção: começar pelo sistema principal, ir para o subsistema e, finalmente, isolar o componente com falha.
 
 `Nível 1 (Sistema)` → `Nível 2 (Subsistema)` → `Nível 3 (Diagnóstico Específico)`
 
