@@ -87,6 +87,8 @@ Esses parâmetros representam medidas típicas coletadas por sistemas embarcados
     ```Bash
         git clone https://github.com/DanielMilanez/HAD.git
         cd HAD
+        python -m venv venv
+        source ./venv/Scripts/activate
         pip install -r requirements.txt
     ```
 
