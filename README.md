@@ -42,7 +42,7 @@ Esses parâmetros representam medidas típicas coletadas por sistemas embarcados
 ## Organização do projeto
 
 ```bash
-📦 diagnostico_hierarquico/
+📦 HAD/
  ┣ 📁 data/
  │  ┣ 📁 processed/               
  │  ┗ 📁 raw/                      
@@ -83,16 +83,27 @@ Esses parâmetros representam medidas típicas coletadas por sistemas embarcados
 
 ## Como rodar a pipeline completa
 
-1. Clone e instale:
+1. Clone e instale o repositório em sua maquina:
     ```Bash
         git clone https://github.com/DanielMilanez/HAD.git
-        cd HAD
-        python -m venv venv
-        source ./venv/Scripts/activate
-        pip install -r requirements.txt
     ```
-
-1. Gerar o dataset
+1. Acesse o diretório
+   ```Bash
+        cd HAD
+   ```
+1. Crie um ambiente virtual python
+   ```Bash
+        python -m venv venv
+   ```
+1. Ative o ambiente virtual
+   ```Bash
+       source ./venv/Scripts/activate
+   ```
+1. Instale o requirements
+   ```Bash       
+        pip install -r requirements.txt
+   ```
+1. Gerar o dataset, é uma forma que encontrei para compactar o arquivo, não se preocupe com escalonamento e nem com variáveis do tipo string.
     ```Bash
         python src/dataset_create.py
     ```
