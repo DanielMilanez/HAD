@@ -1,10 +1,12 @@
-import pandas as pd
 import joblib
 import warnings
+import pandas as pd
 from pathlib import Path
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
+import plotly.graph_objects as go
+import plotly.express as px
 
 warnings.filterwarnings('ignore', category=FutureWarning)
 
@@ -177,3 +179,29 @@ print(f"Acurácia do Modelo Raiz (Nível 1): {accuracy_score(y_real_n1, predicoe
 print("\nRelatório de Classificação (Nível 1):")
 print(classification_report(y_real_n1, predicoes_n1))
 print("=" * 50)
+
+df_comp = pd.DataFrame({"Real": y_real_n1, "Predito": predicoes_n1})
+real_counts = df_comp["Real"].value_counts().sort_index()
+pred_counts = df_comp["Predito"].value_counts().sort_index()
+
+fig = go.Figure()
+fig.add_trace(go.Bar(x=real_counts.index, y=real_counts.values, name="Real"))
+fig.add_trace(go.Bar(x=pred_counts.index, y=pred_counts.values, name="Predito"))
+fig.update_layout(title="Comparativo – Real vs Predito (Nível 1)",
+                  xaxis_title="Classe", yaxis_title="Quantidade", barmode="group")
+fig.show()
+
+tabela = pd.crosstab(df_comp["Real"], df_comp["Predito"])
+fig = px.imshow(tabela, text_auto=True, color_continuous_scale="Blues",
+                title="Heatmap – Real vs Predito")
+fig.update_xaxes(title="Predito")
+fig.update_yaxes(title="Real")
+fig.show()
+
+df_comp["Acertou"] = df_comp["Real"] == df_comp["Predito"]
+fig = px.scatter(df_comp, x=df_comp.index, y="Real", color="Acertou",
+                 color_discrete_map={True: "green", False: "red"},
+                 hover_data=["Real", "Predito"],
+                 title="Comparação – Acertos (verde) e Erros (vermelho)")
+fig.update_layout(xaxis_title="Índice da Amostra", yaxis_title="Classe Real")
+fig.show()
