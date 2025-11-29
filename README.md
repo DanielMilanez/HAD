@@ -71,9 +71,9 @@ Esses parâmetros representam medidas típicas coletadas por sistemas embarcados
  │  ┗ 📄 exploratory_analysis.ipynb
  │
  ┣ 📁 src/
- │  ┣ 📄 dataset_create.py         # Criação e pré-processamento do dataset
- │  ┣ 📄 models.py                 # Definição e carregamento dos modelos
- │  ┗ 📄 predict.py                # Pipeline de previsão hierárquica
+ │  ┣ 📄 dataset_create.py         
+ │  ┣ 📄 models.py                 
+ │  ┗ 📄 predict.py                
  │
  ┣ 📄 .gitignore
  ┣ 📄 requirements.txt
@@ -105,16 +105,16 @@ Esses parâmetros representam medidas típicas coletadas por sistemas embarcados
    ```
 1. Gerar o dataset, é uma forma que encontrei para compactar o arquivo, não se preocupe com escalonamento e nem com variáveis do tipo string.
     ```Bash
-        python src/dataset_create.py
+        python src/generate_dataset.py
     ```
 
 1. Treinar os modelos
     ```Bash
-        python src/models.py
+        python src/generate_models.py
     ```
 
-1. Fazer o diagnóstico
+1. Fazer o diagnóstico e testar modelos
     ```
-        python src/predict.py
+        python src/inference.py
     ```
 
