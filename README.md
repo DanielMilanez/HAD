@@ -2,6 +2,7 @@
 
 > Este projeto é um protótipo de um sistema de FID (Fault Detection and Identification) para aeronaves.
 
+
 Em vez de usar um modelo de IA "monolítico", esta arquitetura usa um total de 14 modelos especialistas (RandomForestClassifier) em uma cascata de 3 níveis. O objetivo é imitar o processo de diagnóstico de um engenheiro de manutenção: começar pelo sistema principal, ir para o subsistema e, finalmente, isolar o componente com falha.
 
 `Nível 1 (Sistema)` → `Nível 2 (Subsistema)` → `Nível 3 (Diagnóstico Específico)`
@@ -42,38 +43,49 @@ Esses parâmetros representam medidas típicas coletadas por sistemas embarcados
 ## Organização do projeto
 
 ```bash
-📦 HAD/
- ┣ 📁 data/
- │  ┣ 📁 processed/               
- │  ┗ 📁 raw/                      
- │     ┗ 📄 dataset_aircraft_failures.csv
- │
- ┣ 📁 models/
- │  ┣ 📁 nivel1/
- │  │  ┗ 📄 modelo_raiz.pkl
- │  ┣ 📁 nivel2/
- │  │  ┣ 📄 modelo_estrutural.pkl
- │  │  ┗ 📄 modelo_sistemas.pkl
- │  ┗ 📁 nivel3/
- │     ┣ 📄 modelo_asa.pkl
- │     ┣ 📄 modelo_avionica.pkl
- │     ┣ 📄 modelo_cabine.pkl
- │     ┣ 📄 modelo_combustivel.pkl
- │     ┣ 📄 modelo_controles_de_voo.pkl
- │     ┣ 📄 modelo_eletrico.pkl
- │     ┣ 📄 modelo_fuselagem.pkl
- │     ┣ 📄 modelo_hidraulico.pkl
- │     ┣ 📄 modelo_motor.pkl
- │     ┣ 📄 modelo_pneumatico.pkl
- │     ┗ 📄 modelo_trem_de_pouso.pkl
- │
- ┣ 📁 notebooks/
- │  ┗ 📄 exploratory_analysis.ipynb
- │
- ┣ 📁 src/
- │  ┣ 📄 dataset_create.py         
- │  ┣ 📄 models.py                 
- │  ┗ 📄 predict.py                
+📁 HAD/
+ ┣ 📁 hardware/
+ │  ┣ 📁 front-end/
+ │  │   ┣ 📁 fonts
+ │  │   ┣ 📁 node_modules
+ │  │   ┣ 📄 airplane.json
+ │  │   ┣ 📄 index.html
+ │  │   ┣ 📄 main.js
+ │  │   ┣ 📄 package.json
+ │  │   ┗ 📄 package-lock.json
+ │  ┗ 📄 conversor.c   
+ ┣ 📁 modelo/
+ │  ┣ 📁 data/
+ │  │  ┣ 📁 processed/               
+ │  │  ┗ 📁 raw/                      
+ │  │     ┗ 📄 dataset_aircraft_failures.csv
+ │  │
+ │  ┣ 📁 models/
+ │  │  ┣ 📁 nivel1/
+ │  │  │  ┗ 📄 modelo_raiz.pkl
+ │  │  ┣ 📁 nivel2/
+ │  │  │  ┣ 📄 modelo_estrutural.pkl
+ │  │  │  ┗ 📄 modelo_sistemas.pkl
+ │  │  ┗ 📁 nivel3/
+ │  │     ┣ 📄 modelo_asa.pkl
+ │  │     ┣ 📄 modelo_avionica.pkl
+ │  │     ┣ 📄 modelo_cabine.pkl
+ │  │     ┣ 📄 modelo_combustivel.pkl
+ │  │     ┣ 📄 modelo_controles_de_voo.pkl
+ │  │     ┣ 📄 modelo_eletrico.pkl
+ │  │     ┣ 📄 modelo_fuselagem.pkl
+ │  │     ┣ 📄 modelo_hidraulico.pkl
+ │  │     ┣ 📄 modelo_motor.pkl
+ │  │     ┣ 📄 modelo_pneumatico.pkl
+ │  │     ┗ 📄 modelo_trem_de_pouso.pkl
+ │  │
+ │  ┣ 📁 notebooks/
+ │  │  ┗ 📄 exploratory_analysis.ipynb
+ │  │
+ │  ┣ 📁 src/
+ │  │  ┣ 📄 dataset_create.py         
+ │  │  ┣ 📄 models.py                 
+ │  ┗  ┗ 📄 predict.py                
  │
  ┣ 📄 .gitignore
  ┣ 📄 requirements.txt
@@ -118,3 +130,18 @@ Esses parâmetros representam medidas típicas coletadas por sistemas embarcados
         python src/inference.py
     ```
 
+## Como testar o arquivo do modelo 3D
+
+1. Instale em sua maquina o [node js](https://nodejs.org/pt)
+1. Acesse o diretório hardware/front-end
+2. Abra o cmd neste diretório
+3. Execite o comando serve para permitir que o windows aceite comandos do npm 
+   ```
+        Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+    ```
+4. Rode o servidor
+   ```
+        npm run dev
+   ```
+
+Como o hardware não está em sua posse, para verificar o funcionamento manipule os parametros do arquio json e veja o resultado, para demonstrar legendas precione a tecla de espaço, a IA nessa versão do front-end não está integrada, afinal sem o hardware não tem o porque utilizar essa versão simplificada.
