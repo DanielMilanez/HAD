@@ -144,4 +144,4 @@ Esses parâmetros representam medidas típicas coletadas por sistemas embarcados
         npm run dev
    ```
 
-Como o hardware não está em sua posse, para verificar o funcionamento manipule os parametros do arquio json e veja o resultado, para demonstrar legendas precione a tecla de espaço, a IA nessa versão do front-end não está integrada, afinal sem o hardware não tem o porque utilizar essa versão simplificada.
+Como o hardware não está em sua posse, para verificar o funcionamento manipule os parametros do arquio json e veja o resultado, para demonstrar legendas precione a tecla de espaço, a IA nessa versão do front-end não está integrada, afinal sem o hardware não tem o porque utilizar algo além dessa versão simplificada.
